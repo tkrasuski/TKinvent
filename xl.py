@@ -20,11 +20,15 @@ class XlHandler(object):
         for row in self.ws.iter_rows(min_row=2, max_col=5, max_row=8):
             drow = {}
             for cell in row:
-                print cell.column, ':', cell.value
-                if cell.column == 1:
+                #print cell.column, ':', cell.value
+                if cell.column == stt.part_no:
                     drow['part_no']=cell.value
-                if cell.column == 2:
+                if cell.column == stt.description:
                     drow['description']=cell.value
-                if cell.column == 4:
+                if cell.column == stt.qty:
                     drow['qty']=cell.value
             self.data.append(dict(line=drow))
+
+    def getContent(self):
+        content = dict(content=self.data)
+        return content

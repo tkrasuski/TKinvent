@@ -4,4 +4,4 @@ from xl import XlHandler
 xl = XlHandler()
 xl.loadFile('stellio.xlsx')
 xl.parseFile()
-print xl.data
+print xl.getContent()

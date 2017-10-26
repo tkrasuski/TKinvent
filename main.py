@@ -4,7 +4,9 @@ from tkFileDialog import askopenfilename
 import tkMessageBox as Msg
 import helper as hlp
 import json
+from xl import XlHandler
 talk = hlp.Talk()
+xl = XlHandler()
 service = '/default/service' 
 # obsłuż wyjątek !!!
 rfs=talk.get_(service)
@@ -20,6 +22,7 @@ class File_(object):
         self.load_id = None
 
 fl = File_()
+
 fl.load_id = load_id
 window = Tk()
 window.geometry('650x500+300+300')
@@ -33,6 +36,13 @@ def selectFile():
         # tu trzeba wstawić obsługe wyjątku json i wystawić jako błąd parsowania pliku
         fl.js=json.loads(ftext)
         #text.insert(END,fl.js)
+def selectXlFile():
+    fl.filename = askopenfilename(filetypes=[("Pliki Excel", "*.xlsx")])
+    file_label['text']=u'plik do wysłania: %s' %fl.filename
+    file_label.pack()
+    xl.loadFile(fl.filename)
+    xl.parseFile()
+    fl.js = xl.getContent()
 def sendFile():
     status_label['text']=u'łączę..'
     if fl.filename:
@@ -50,7 +60,8 @@ def sendFile():
         status_label['text']=u'błąd'
         Msg.showinfo(u'Błąd', u'Wybierz plik przed wysłaniem.')
     status_label['text']=u'nie połączony'
-load_file_btn=Button(window, text=u'Załaduj plik', command=selectFile)
+load_file_btn=Button(window, text=u'Załaduj plik JSON', command=selectFile)
+load_xl_file_btn=Button(window, text=u'Załaduj plik Excela', command=selectXlFile)
 send_file_btn=Button(window, text=u'Wyślij plik', command=sendFile)
 file_label = Label(window, text=u'plik do wysłania: %s' %fl.filename)
 status_label = Label(window, text=u'Nie połączony')
@@ -58,6 +69,7 @@ text=Text(window, height=30, width=80)
 scroll = Scrollbar(window, command=text.yview)
 text.configure(yscrollcommand=scroll.set)
 load_file_btn.pack(side=TOP)
+load_xl_file_btn.pack(side=TOP)
 send_file_btn.pack(side=TOP)
 file_label.pack(side=TOP)
 status_label.pack(side=TOP)
