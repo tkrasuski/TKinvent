@@ -19,4 +19,9 @@ TKinvent is very simple client of invent module. Application handles uploads jso
 
 ### settings
 
-All application settings are stored in settings.py file
+All application settings are stored in settings.py file. 
+
+* url - invent service url
+* port - port your service using
+* user - service user
+* sign - service user digital sign
