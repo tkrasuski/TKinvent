@@ -31,7 +31,8 @@ def sendFile():
     if fl.filename:
         for r in fl.js['content']:
             talk.data=r # iteracja po liście
-            talk.post_(service)
+            ret =talk.post_(service)
+            print ret
     else:
         Msg.showinfo(u'Błąd', u'Wybierz plik przed wysłaniem.')
 load_file_btn=Button(window, text=u'Załaduj plik', command=selectFile)

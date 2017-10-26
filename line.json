@@ -1,6 +1,6 @@
 {"content": [
-        {"line_no":1, "line":"to jest linia 1"},
-        {"line_no":2, "line":"to jest linia 2"},
-        {"line_no":3, "line":"to jest linia 3"}
+        {"load_id":1, "line":"to jest linia 1"},
+        {"load_id":1, "line":"to jest linia 2"},
+        {"load_id":1, "line":"to jest linia 3"}
     ]
 }

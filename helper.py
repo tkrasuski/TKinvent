@@ -22,6 +22,7 @@ class Talk(object):
         if msg:
             req = self.session.post(stt.url+msg, data=js.dumps(self.data), headers=self.headers,verify=False)
             if req.status_code == 200:
+                
                 return req.text
             else:
                 return req.status_code
