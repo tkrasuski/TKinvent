@@ -20,6 +20,7 @@ class Talk(object):
         sends data
         '''
         if msg:
+            print "wysyłam: ", js.dumps(self.data)
             req = self.session.post(stt.url+msg, data=js.dumps(self.data), headers=self.headers,verify=False)
             if req.status_code == 200:
                 
