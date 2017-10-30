@@ -17,7 +17,7 @@ class XlHandler(object):
         self.wb = load_workbook(filename=bfile,read_only=True)
     def parseFile(self):
         self.ws = self.wb.active
-        for row in self.ws.iter_rows(min_row=2, max_col=5, max_row=8):
+        for row in self.ws.iter_rows(min_row=2, max_col=5, max_row=50):
             drow = {}
             for cell in row:
                 #print cell.column, ':', cell.value
